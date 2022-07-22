@@ -7,7 +7,7 @@ class AppTheme {
   static const elevation = 0;
   static const backgroundColor = Color(0xffff5f6fa);
 
-  static final ThemeData lightTheme = ThemeData(
+  static final ThemeData theme = ThemeData(
     primaryColor: primaryColor,
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(
