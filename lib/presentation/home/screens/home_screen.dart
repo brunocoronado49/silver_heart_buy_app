@@ -33,10 +33,10 @@ class _HomeScreenState extends State<HomeScreen> {
             return PageView(
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                FeedScreen(),
-                SearchScreen(),
-                ProfileScreen(),
+              children: [
+                const FeedScreen(),
+                SearchScreen(user: state.user),
+                const ProfileScreen(),
               ],
             );
           }
