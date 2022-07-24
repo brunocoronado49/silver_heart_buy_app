@@ -88,7 +88,7 @@ class _PostItemsState extends State<PostItems> {
             );
           }
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(color: Colors.black),
           );
         },
       ),
