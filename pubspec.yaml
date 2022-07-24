@@ -58,6 +58,8 @@ dependencies:
   firebase_storage: ^10.3.3
   carousel_slider: ^4.1.1
   page_indicator: ^0.4.1
+  image_picker: ^0.8.5+3
+  cached_network_image: ^3.2.1
 
 dev_dependencies:
   flutter_test:
