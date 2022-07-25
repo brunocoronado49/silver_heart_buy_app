@@ -8,7 +8,7 @@ class UserRepoImp extends UserRepository {
   final provider = UserProvider();
 
   @override
-  Future<MyUser?> getUsers() => provider.getUser();
+  Future<MyUser?> getUser() => provider.getUser();
 
   @override
   Future<void> saveUser(MyUser user, File? image) => provider.saveUser(user, image);

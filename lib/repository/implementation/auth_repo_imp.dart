@@ -8,13 +8,13 @@ class AuthRepoImp extends AuthRepository {
   AuthUser? _userFromFirebase(User? user) => user == null ? null : AuthUser(user.uid);
 
   @override
+  Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().asyncMap(_userFromFirebase);
+
+  @override
   Future<AuthUser?> createUserWithEmailAndPassword(String email, String password) async {
     final authResult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     return _userFromFirebase(authResult.user);
   }
-
-  @override
-  Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().asyncMap(_userFromFirebase);
 
   @override
   Future<AuthUser?> signInWithEmailAndPassword(String email, String password) async {

@@ -48,10 +48,6 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // const SubtitleProfile(subtitle: "Publicaciones"),
-                // const SizedBox(height: 10),
-                // ProfilePosts(user: state.user),
-                // const SizedBox(height: 20),
               ],
             ),
           );

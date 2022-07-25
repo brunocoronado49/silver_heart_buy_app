@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:silver_heart_buy/bloc/bloc.dart';
 import 'package:silver_heart_buy/models/models.dart';
+import 'package:silver_heart_buy/theme/app_theme.dart';
 
 class ProfileSection extends StatefulWidget {
   const ProfileSection({Key? key, this.user, this.image, this.isSaving = false})
@@ -82,6 +84,59 @@ class _ProfileSectionState extends State<ProfileSection> {
                 ),
               ),
             ),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _nameCtrl,
+            decoration: const InputDecoration(labelText: 'Nombre'),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _descriptionCtrl,
+            decoration: const InputDecoration(labelText: 'Descripción'),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _addressCtrl,
+            keyboardType: TextInputType.streetAddress,
+            decoration: const InputDecoration(labelText: 'Dirección'),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _emailCtrl,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(labelText: 'Correo'),
+          ),
+          const SizedBox(height: 8),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: FloatingActionButton.extended(
+                  backgroundColor: AppTheme.thirdColor,
+                  onPressed: widget.isSaving
+                      ? null
+                      : () {
+                          context.read<UserBloc>().saveUser(
+                              (context.read<Authcubit>().state
+                                      as AuthStateSuccess)
+                                  .user
+                                  .uid,
+                              _nameCtrl.text.trim(),
+                              _descriptionCtrl.text.trim(),
+                              _addressCtrl.text.trim(),
+                              _emailCtrl.text.trim()
+                          );
+                        },
+                  label: const Text('Guardar información'),
+                  icon: const Icon(
+                    Icons.edit_outlined,
+                  ),
+                ),
+              ),
+              if (widget.isSaving) const CircularProgressIndicator(),
+            ],
           ),
         ],
       ),

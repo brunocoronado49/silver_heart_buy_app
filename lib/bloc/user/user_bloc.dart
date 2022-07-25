@@ -12,29 +12,28 @@ part 'user_state.dart';
 class UserBloc extends Cubit<UserState> {
   final UserRepository _repository;
   late MyUser _user;
-  File? _image;
+  File? _imagePicked;
 
   UserBloc(this._repository) : super(UserStateInitial());
 
   void setImage(File? imagePicked) async {
-    _image = imagePicked;
-    emit(UserStateSuccess(_user, _image));
+    _imagePicked = imagePicked;
+    emit(UserStateSuccess(_user, _imagePicked));
   }
 
   Future<void> getUser() async {
     emit(UserStateLoading());
-    _user = (await _repository.getUsers()) ??
+    _user = (await _repository.getUser()) ??
     const MyUser('', '', '', '', '');
-
-    emit(UserStateSuccess(_user, _image));
+    emit(UserStateSuccess(_user, _imagePicked));
   }
 
   Future<void> saveUser(String uid, String name, String description, String address, String email) async {
-    _user = MyUser(uid, name, description, address, email);
-    emit(UserStateSuccess(_user, _image, isSaving: true));
+    _user = MyUser(uid, name, description, address, email, image: _user.image);
+    emit(UserStateSuccess(_user, _imagePicked, isSaving: true));
     await Future.delayed(const Duration(seconds: 3));
-    await _repository.saveUser(_user, _image);
+    await _repository.saveUser(_user, _imagePicked);
     emit(UserStateSaved());
-    emit(UserStateSuccess(_user, _image, isSaving: false));
+    emit(UserStateSuccess(_user, _imagePicked, isSaving: false));
   }
 }

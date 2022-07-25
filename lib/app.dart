@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
           _navigatorKey.currentState?.pushNamedAndRemoveUntil(
             Routes.intro, (r) => false
           );
-        } else if (state is AuthStateLoading) {
+        } else if (state is AuthStateSuccess) {
           _navigatorKey.currentState?.pushNamedAndRemoveUntil(
             Routes.home, (r) => false
           );
