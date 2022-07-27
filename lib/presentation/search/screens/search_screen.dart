@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:silver_heart_buy/models/models.dart';
 import 'package:silver_heart_buy/presentation/search/widgets/list_tile_user.dart';
+import 'package:silver_heart_buy/presentation/user/screens/user_detail_screen.dart';
 import 'package:silver_heart_buy/presentation/widgets/error_text.dart';
 import 'package:silver_heart_buy/theme/app_theme.dart';
-
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key, required this.user}) : super(key: key);
@@ -42,11 +42,11 @@ class _SearchScreenState extends State<SearchScreen> {
                         document.data()! as Map<String, dynamic>;
 
                     return Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
                       padding: const EdgeInsets.all(10),
                       child: Card(
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
+                            horizontal: 30),
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -67,21 +67,21 @@ class _SearchScreenState extends State<SearchScreen> {
                                 name: data["name"],
                                 description: data["description"],
                                 onTap: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) =>
-                                  //             UserDetailScreen(
-                                  //               name: data["name"],
-                                  //               description:
-                                  //                   data["description"],
-                                  //               email: data["email"],
-                                  //               phone: data["phone"],
-                                  //               web: data["web"],
-                                  //               address: data["address"],
-                                  //               image: data["image"],
-                                  //               user: widget.user,
-                                  //             )));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              UserDetailScreen(
+                                                name: data["name"],
+                                                description:
+                                                    data["description"],
+                                                email: data["email"],
+                                                phone: data["phone"],
+                                                web: data["web"],
+                                                address: data["address"],
+                                                image: data["image"],
+                                                user: widget.user,
+                                              )));
                                 }),
                           ],
                         ),
