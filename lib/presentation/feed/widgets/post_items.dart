@@ -3,6 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:silver_heart_buy/models/models.dart';
 import 'package:silver_heart_buy/presentation/feed/widgets/list_tile_post.dart';
+import 'package:silver_heart_buy/presentation/post/screens/post_detail_screen.dart';
+import 'package:silver_heart_buy/presentation/profile/screens/profile_post_detail_screen.dart';
 import 'package:silver_heart_buy/theme/app_theme.dart';
 
 class PostItems extends StatefulWidget {
@@ -79,7 +81,28 @@ class _PostItemsState extends State<PostItems> {
                         title: post["name"],
                         seller: post["seller"],
                         price: post["price"],
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            if (post["seller"] != widget.user.name) {
+                              return PostDetailScreen(
+                                name: post["name"],
+                                description: post["description"],
+                                seller: post["seller"],
+                                price: post["price"],
+                                imageUrl: post["url"],
+                              );
+                            }
+                            return ProfilePostDetailScreen(
+                              name: post["name"],
+                              description: post["description"],
+                              seller: post["seller"],
+                              price: post["price"],
+                              imageUrl: post["url"],
+                              ref: post["path"],
+                            );
+                          }));
+                        },
                       ),
                     ],
                   ),
@@ -88,7 +111,9 @@ class _PostItemsState extends State<PostItems> {
             );
           }
           return const Center(
-            child: CircularProgressIndicator(color: Colors.black),
+            child: CircularProgressIndicator(
+              color: Colors.black
+            ),
           );
         },
       ),
