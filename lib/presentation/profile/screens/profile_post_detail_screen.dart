@@ -3,7 +3,7 @@ import 'package:silver_heart_buy/presentation/post/widgets/post_image.dart';
 import 'package:silver_heart_buy/presentation/profile/widgets/profile_post_info.dart';
 
 class ProfilePostDetailScreen extends StatelessWidget {
-  const ProfilePostDetailScreen({Key? key, required this.name, required this.description, required this.price, required this.seller, required this.imageUrl, required this.ref}) : super(key: key);
+  const ProfilePostDetailScreen({Key? key, required this.name, required this.description, required this.price, required this.seller, required this.imageUrl, required this.ref, required this.uid, required this.type}) : super(key: key);
 
   final String name;
   final String description;
@@ -11,6 +11,8 @@ class ProfilePostDetailScreen extends StatelessWidget {
   final String seller;
   final String imageUrl;
   final String ref;
+  final String uid;
+  final String type;
   
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,11 @@ class ProfilePostDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            PostImage(image: imageUrl),
+            PostImage(
+              imageUrl: imageUrl,
+              uid: uid,
+              type: type,
+            ),
             const SizedBox(height: 20),
             ProfilePostInfo(
               name: name,

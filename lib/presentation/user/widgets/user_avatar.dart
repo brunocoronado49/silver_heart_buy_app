@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:silver_heart_buy/theme/app_theme.dart';
 
 class UserAvatar extends StatelessWidget {
   const UserAvatar({Key? key, this.avatar}) : super(key: key);
@@ -7,20 +8,15 @@ class UserAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20)
+    return  Center(
+      child: ClipOval(
+        child: CircleAvatar(
+          backgroundColor: AppTheme.thirdColor,
+          radius: 70,
+          child: avatar != null ?
+            Image.network(avatar!) : 
+            Image.asset("assets/profile-user.png")
         ),
-      ),
-      child: FadeInImage(
-        image: NetworkImage(avatar!),
-        placeholder: const AssetImage("assets/loading.gif"),
-        width: double.infinity,
-        height: 150,
-        fit: BoxFit.cover,
-        fadeInDuration: const Duration(milliseconds: 300),
       ),
     );
   }

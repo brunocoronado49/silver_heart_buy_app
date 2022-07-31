@@ -55,7 +55,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Column(
                           children: [
                             FadeInImage(
-                              image: NetworkImage(data["image"]),
+                              image: data["image"] ?
+                              NetworkImage(data["image"]) :
+                              const AssetImage("assets/profile-user.png") as ImageProvider,
                               placeholder:
                                   const AssetImage("assets/loading.gif"),
                               width: double.infinity,

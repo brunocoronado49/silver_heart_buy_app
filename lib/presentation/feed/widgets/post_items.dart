@@ -91,6 +91,8 @@ class _PostItemsState extends State<PostItems> {
                                 seller: post["seller"],
                                 price: post["price"],
                                 imageUrl: post["url"],
+                                uid: post["userId"],
+                                type: post["type"],
                               );
                             }
                             return ProfilePostDetailScreen(
@@ -100,6 +102,8 @@ class _PostItemsState extends State<PostItems> {
                               price: post["price"],
                               imageUrl: post["url"],
                               ref: post["path"],
+                              uid: post["userId"],
+                              type: post["type"],
                             );
                           }));
                         },
