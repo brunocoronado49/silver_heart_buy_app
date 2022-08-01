@@ -68,7 +68,7 @@ class _PostImageState extends State<PostImage> {
                   autoRotate: autoRotate,
                   rotationCount: rotationCount,
                   rotationDirection: RotationDirection.anticlockwise,
-                  frameChangeDuration: const Duration(milliseconds: 30),
+                  frameChangeDuration: const Duration(milliseconds: 300),
                   swipeSensitivity: swipeSensitivity,
                   allowSwipeToRotate: allowSwipeToRotate,
                 )

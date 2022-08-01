@@ -34,9 +34,10 @@ class _PostItemsState extends State<PostItems> {
           "seller": fileMeta.customMetadata?['seller'] ?? 'nobody',
           "description":
               fileMeta.customMetadata?['description'] ?? 'no description',
-          "name": fileMeta.customMetadata?["title"] ?? "no title",
+          "name": fileMeta.customMetadata?["name"] ?? "no title",
           "price": fileMeta.customMetadata?["price"] ?? "no price",
-          "material": fileMeta.customMetadata?["material"] ?? "no material",
+          "type": fileMeta.customMetadata?["type"] ?? "no material",
+          "userId": fileMeta.customMetadata?["userId"] ?? "no uid",
         });
       });
     } catch (error) {
@@ -93,6 +94,8 @@ class _PostItemsState extends State<PostItems> {
                                 imageUrl: post["url"],
                                 uid: post["userId"],
                                 type: post["type"],
+                                banc: post["banc"],
+                                accountNumber: post["accountNumber"],
                               );
                             }
                             return ProfilePostDetailScreen(
